@@ -28,11 +28,13 @@ public class MainClass extends GraphicsProgram implements ActionListener
     private int score, previousScore;
     private GLabel scoreLabel;
     private GLabel instructions;
-    private GLabel startLabel, colorLabel;
+    private GLabel startLabel, colorLabel, instructionsLabel;
     private Color snakeColor;
     private Boolean showColorSelection;
 
-    private GTextField colorLabel, redLabel, greenLabel, blueLabel;
+    private Boolean showInstructions;
+
+    private GTextField redLabel, greenLabel, blueLabel;
     private GButton submitButton;
 
 
@@ -58,66 +60,44 @@ public class MainClass extends GraphicsProgram implements ActionListener
     // add instructions and scoreboard to screen
     private void setUpStartScreen(){
 
-        startLabel = new GLabel("Press anything to start", getWidth()/2, getHeight()/2);
+        startLabel = new GLabel("Press any key to start", getWidth()/2, getHeight()/2);
         startLabel.setFont(new Font("Arial", Font.BOLD, 20));
         add(startLabel);
-        showColorSelection = false;
+        showInstructions = false;
+
+    }
+    private void ShowInstructions(){
 
     }
     public void keyPressed(KeyEvent e){
-        if (!showColorSelection) {
+        if (!showInstructions) {
             remove(startLabel);
-            showColorSelection = true;
+            showInstructions = true;
+            Instructions instructions = new Instructions("Use the arrow keys to move the snake.", getWidth()/2, getHeight()/2);
+            instructions.setFont(new Font("Arial", Font.BOLD, 20));
+            add(instructions);
 
-            GLabel colorLabel = new GLabel("Enter RGB values (0-255):", getWidth()/2, getHeight()/2);
-            add(colorLabel);
-
-            GLabel redLabel = new GLabel("Red:", getWidth()/2 - 100, getHeight()/2 + 20);
-            add(redLabel);
-            GTextField redField = new GTextField("", 5);
-            add(redField, getWidth()/2, getHeight()/2 + 20);
-
-            GLabel greenLabel = new GLabel("Green:", getWidth()/2 - 100, getHeight()/2 + 40);
-            add(greenLabel);
-            GTextField greenField = new GTextField("", 5);
-            add(greenField, getWidth()/2, getHeight()/2 + 40);
-
-            GLabel blueLabel = new GLabel("Blue:", getWidth()/2 - 100, getHeight()/2 + 60);
-            add(blueLabel);
-            GTextField blueField = new GTextField("", 5);
-            add(blueField, getWidth()/2, getHeight()/2 + 60);
-
-            GButton submitButton = new GButton("Submit");
-            add(submitButton, getWidth()/2, getHeight()/2 + 80);
 
             submitButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    int red = Integer.parseInt(redField.getText());
-                    int green = Integer.parseInt(greenField.getText());
-                    int blue = Integer.parseInt(blueField.getText());
-                    snakeColor = new Color(red, green, blue);
+                    snakeColor = Color.green;
                     // Start the game here
                     timer.start();
                     remove(startLabel);
-                    remove(colorLabel);
-                    remove(redLabel);
-                    remove(redField);
-                    remove(greenLabel);
-                    remove(greenField);
-                    remove(blueLabel);
-                    remove(blueField);
-                    remove(submitButton);
                 }
             });
+        }
+
     }
+
     public void drawSnake()
     {
 
     }
-
+/*
     public void keyPressed(KeyEvent keyPressed)
     {
-        switch (keyPressed.getKeyCode())
+        switch (keyPressed.getK2eyCode())
         {
             case KeyEvent.VK_UP:
 
@@ -134,7 +114,7 @@ public class MainClass extends GraphicsProgram implements ActionListener
         }
     }
 
-
+*/
     private void redrawSnake()
     {
     }
@@ -169,7 +149,6 @@ public class MainClass extends GraphicsProgram implements ActionListener
     public static void main(String[] args)
     {
         new MainClass().start();
-
 
     }
 }
