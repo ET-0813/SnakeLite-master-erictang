@@ -40,10 +40,10 @@ public class MainClass extends GraphicsProgram implements ActionListener
     public GOval food;
     private GLabel instructions;
     private GLabel startLabel;
-    private Color snakeColor;
-    private Boolean showColorSelection;
+    //private Color snakeColor;
+    //private Boolean showColorSelection;
     private Boolean showInstructions;
-    private GButton submitButton;
+    //private GButton submitButton;
     private int snake_direction; // 1 : up; 2: down; 3: left; 4: right
     private Boolean showScore;
     private GLabel endLabel;
@@ -64,7 +64,7 @@ public class MainClass extends GraphicsProgram implements ActionListener
         drawSnake();
         showScore = false;
         setUpEndScreen();
-//        food = new Ball (50,50,100,100);
+        //food = new Ball (50,50,100,100);
     }
     // food changes location randomly
     public void randomFood(){
